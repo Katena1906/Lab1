@@ -44,5 +44,5 @@ class ShopPlatform:
                 print(f"Book {title} found")
                 found = True
                 break
-            if not found:
-                print(f"Book {title} not found")
+        if not found:
+            print(f"Book {title} not found")
