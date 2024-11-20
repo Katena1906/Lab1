@@ -9,13 +9,13 @@ class Cart:
 
     def add_book(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance")
+            raise TypeError("Expected Book instance")
         self.items.append(book)
         print(f"'{book.title}' added to {self.user.username} cart")
 
     def remove_book(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance")
+            raise TypeError("Expected Book instance")
         try:
             self.items.remove(book)
             print(f"'{book.title}' removed from {self.user.username} cart")
@@ -44,13 +44,13 @@ class Order:
 
     def add_book_to_order(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance")
+            raise TypeError("Expected Book instance")
         self.in_order.append(book)
         print(f"'{book.title}' added to {self.user.username} order")
 
     def remove_book_in_order(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance")
+            raise TypeError("Expected Book instance")
         try:
             self.in_order.remove(book)
             print(f"'{book.title}' removed from {self.user.username} order")
