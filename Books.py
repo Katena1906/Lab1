@@ -7,6 +7,10 @@ class Book:
         self.price: float = price
         self.genre: str =genre
 
+    def info(self) -> None:
+        print(
+            f"Title: {self.title}\nAuthor: {self.author.name}\nISBN: {self.isbn}\nPrice: {self.price}\nGenre: {self.genre}")
+
 
 
 

@@ -6,9 +6,12 @@ class Author:
         self.name: str = name
         self.books: List[Book]=[]
 
-    def list_book(self) -> None:
+    def list_books(self) -> None:
+        if not self.books:
+            print(f"{self.name} has no books.")
+            return
         for book in self.books:
-            print(f"Name:{book.title}, price:{book.price}")
+            print(f"Title: {book.title}, Price: {book.price}, Genre: {book.genre}")
 
     def add_book(self, book: Book) -> None:
         self.books.append(book)
