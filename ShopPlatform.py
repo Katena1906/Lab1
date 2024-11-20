@@ -38,7 +38,11 @@ class ShopPlatform:
             print(f"'{book.title}' not in platform")
 
     def find_book(self,title: str) -> None:
+        found = False
         for book in self.books:
             if title==book.title:
-                print(f"Book {title} find")
-
+                print(f"Book {title} found")
+                found = True
+                break
+            if not found:
+                print(f"Book {title} not found")
