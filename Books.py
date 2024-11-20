@@ -7,9 +7,6 @@ class Book:
         self.price: float = price
         self.genre: str =genre
 
-        try:
-           author.books.append(self)
-        except AttributeError:
-            print("Ошибка при добавлении книги в список книг автора")
+
 
 
