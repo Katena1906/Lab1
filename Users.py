@@ -13,9 +13,9 @@ class User:
 
     def list_purchased_books(self) -> None:
         if not self.purchased:
-            print(f"{self.username} has not purchased any books.")
+            print(f"{self.username}  not purchased any books.")
             return
-        print(f"{self.username}'s purchased books:")
+        print(f"{self.username} purchased books:")
         for book in self.purchased:
             print(f"- {book.title} by {book.author.name} {book.author.lastname}")
 
