@@ -9,22 +9,22 @@ class Cart:
 
     def add_book(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance.")
+            raise TypeError("Expected a Book instance")
         self.items.append(book)
-        print(f"'{book.title}' added to {self.user.username} cart.")
+        print(f"'{book.title}' added to {self.user.username} cart")
 
     def remove_book(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance.")
+            raise TypeError("Expected a Book instance")
         try:
             self.items.remove(book)
-            print(f"'{book.title}' removed from {self.user.username} cart.")
+            print(f"'{book.title}' removed from {self.user.username} cart")
         except ValueError:
-            print(f"'{book.title}' is not in {self.user.username} cart.")
+            print(f"'{book.title}' is not in {self.user.username} cart")
 
     def list_items(self) -> None:
         if not self.items:
-            print(f"{self.user.username} cart is empty.")
+            print(f"{self.user.username} cart is empty")
             return
         print(f"Books in {self.user.username} cart:")
         for book in self.items:
@@ -44,22 +44,22 @@ class Order:
 
     def add_book_to_order(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance.")
+            raise TypeError("Expected a Book instance")
         self.in_order.append(book)
-        print(f"'{book.title}' added to {self.user.username} order.")
+        print(f"'{book.title}' added to {self.user.username} order")
 
     def remove_book_in_order(self, book: Book) -> None:
         if not isinstance(book, Book):
-            raise TypeError("Expected a Book instance.")
+            raise TypeError("Expected a Book instance")
         try:
             self.in_order.remove(book)
-            print(f"'{book.title}' removed from {self.user.username} order.")
+            print(f"'{book.title}' removed from {self.user.username} order")
         except ValueError:
-            print(f"'{book.title}' is not in {self.user.username} order.")
+            print(f"'{book.title}' is not in {self.user.username} order")
 
     def list_items(self) -> None:
         if not self.in_order:
-            print(f"{self.user.username} order is empty.")
+            print(f"{self.user.username} order is empty")
             return
         print(f"Books in {self.user.username} cart:")
         for book in self.in_order:
@@ -74,4 +74,4 @@ class Order:
         if new_status not in valid_statuses:
             raise ValueError(f"Invalid status: {new_status}. Valid statuses are: {', '.join(valid_statuses)}.")
         self.status = new_status
-        print(f"Order status changed to '{self.status}'.")
+        print(f"Order status changed to '{self.status}'")

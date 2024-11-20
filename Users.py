@@ -13,7 +13,7 @@ class User:
 
     def list_purchased_books(self) -> None:
         if not self.purchased:
-            print(f"{self.username}  not purchased any books.")
+            print(f"{self.username}  not purchased any books")
             return
         print(f"{self.username} purchased books:")
         for book in self.purchased:
