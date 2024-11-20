@@ -11,6 +11,7 @@ class User:
         self.purchased.append(book)
         print(f"{self.username} purchased '{book.title}'.")
 
+
     def list_purchased_books(self) -> None:
         if not self.purchased:
             print(f"{self.username}  not purchased any books")
