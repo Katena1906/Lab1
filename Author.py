@@ -10,5 +10,5 @@ class Author:
         for book in self.books:
             print(f"Name:{book.title}, price:{book.price}")
 
-    def add_book(self, book: 'Book') -> None:
+    def add_book(self, book: Book) -> None:
         self.books.append(book)
