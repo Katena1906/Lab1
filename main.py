@@ -6,6 +6,7 @@ from Author import Author
 from Books import Book
 from Users import User
 from Cart import Cart
+from Review import Review
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -27,6 +28,22 @@ if __name__ == '__main__':
     cart = Cart(user)
 
     cart.add_book(book1)
+
+    author = Author("John", "Doe")
+    book = Book("Example Book", 1234567890, 29.99, "Fiction", author)
+    user = User("johndoe", "johndoe@example.com")
+
+
+    review = Review(user, book, "Great read!", 5)
+
+
+    review.read_review()
+
+
+    review.save_to_file("lab.json")
+
+
+    loaded_review = Review.load_from_file("lab.json", user, book)
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
