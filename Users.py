@@ -21,26 +21,5 @@ class User:
         for book in self.purchased:
             print(f"- {book.title} by {book.author.name} {book.author.lastname}")
 
-    def to_json(self) -> str:
-        return json.dumps({
-            'username': self.username,
-            'email': self.email,
-            'purchased': [book.title for book in self.purchased]
-        })
 
-    def save_to_file(self, filename: str) -> None:
-        json_str = self.to_json()
-        with open(filename, 'w', encoding='utf-8') as save_file:
-            save_file.write(json_str)
 
-    @classmethod
-    def from_json(cls, json_str: str) -> 'User ':
-        data = json.loads(json_str)
-        user = cls(data['username'], data['email'])
-        return user
-
-    @classmethod
-    def load_from_file(cls, filename: str) -> 'User ':
-        with open(filename, 'r', encoding='utf-8') as file:
-            json_str = file.read()
-            return cls.from_json(json_str)

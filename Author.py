@@ -4,6 +4,14 @@ class Author:
         self.name: str = name
         self.lastname: str = lastname
 
+    def to_dict(self) -> dict:
+        return {"name": self.name, "lastname": self.lastname}
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        return cls(name=data["name"], lastname=data["lastname"])
+
+
     def info(self) -> None:
         print(
             f"Name: {self.name}\nLastname: {self.lastname}")
@@ -18,14 +26,3 @@ class Author:
         json_str = self.to_json()
         with open(filename, 'w', encoding='utf-8') as save_file:
             save_file.write(json_str)
-
-    @classmethod
-    def from_json(cls, json_str: str) -> 'Author':
-        data = json.loads(json_str)
-        return cls(data['name'], data['lastname'])
-
-    @classmethod
-    def load_from_file(cls, filename: str) -> 'Author':
-        with open(filename, 'r', encoding='utf-8') as file:
-            json_str = file.read()
-            return cls.from_json(json_str)

@@ -23,27 +23,20 @@ if __name__ == '__main__':
     book1 = Book(title="1984", isbn=1234567890, price=9.99, genre="Dystopian", author=author)
     book2 = Book(title="Animal Farm", isbn=1234567891, price=7.99, genre="Political Satire", author=author)
 
-    user = User(username="john_doe", email="john@example.com")
+    user = User("john_doe", "john@example.com")
 
     cart = Cart(user)
-
     cart.add_book(book1)
+    cart.add_book(book2)
+
+
+    available_books = [book1, book2]
+
 
     author = Author("John", "Doe")
-    book = Book("Example Book", 1234567890, 29.99, "Fiction", author)
+    book = Book("Example Book", 2236667890, 29.99, "Fiction", author)
     user = User("johndoe", "johndoe@example.com")
-
-
     review = Review(user, book, "Great read!", 5)
-
-
     review.read_review()
-
-
-    review.save_to_file("lab.json")
-
-
-    loaded_review = Review.load_from_file("lab.json", user, book)
-    print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
