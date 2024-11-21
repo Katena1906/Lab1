@@ -1,8 +1,6 @@
 from Users import User
 from Books import Book
 
-
-
 class Review:
     def __init__(self, user: User, book: Book, comment: str, rating: int):
         self.user: User = user
@@ -17,9 +15,14 @@ class Review:
 
     def to_json(self) -> dict:
         return {
-            'user': self.user.username,
-            'book': self.book.title,
+            'user': self.user.to_json(),
+            'book': self.book.to_json(),
             'comment': self.comment,
             'rating': self.rating
         }
 
+    @classmethod
+    def from_json(cls, data: dict):
+        user = User.from_json(data["user"])
+        book = Book.from_json(data["book"])
+        return cls(user=user, book=book, comment=data["comment"], rating=data["rating"])
