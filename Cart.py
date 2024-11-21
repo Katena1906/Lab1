@@ -8,6 +8,19 @@ class Cart:
         self.user: User = user
         self.items: List[Book] = []
 
+    def to_json(self) -> dict:
+        return {
+            "user": self.user.to_json(),
+            "items": [book.to_json() for book in self.items],
+        }
+
+    @classmethod
+    def from_json(cls, data: dict):
+        user = User.from_json(data["user"])
+        cart = cls(user=user)
+        cart.items = [Book.from_json(book) for book in data["items"]]
+        return cart
+
     def add_book(self, book: Book) -> None:
         if not isinstance(book, Book):
             raise TypeError("Expected Book instance")
@@ -42,6 +55,23 @@ class Order:
         self.user: User = user
         self.status: str = "processing"
         self.in_order: List[Book] = []
+
+    def to_json(self) -> dict:
+        return {
+            "order_id": self.order_id,
+            "user": self.user.to_json(),
+            "status": self.status,
+            "in_order": [book.to_json() for book in self.in_order],
+        }
+
+    @classmethod
+    def from_json(cls, data: dict):
+        user = User.from_json(data["user"])
+        order = cls(order_id=data["order_id"], user=user)
+        order.status = data["status"]
+        order.in_order = [Book.from_json(book) for book in data["in_order"]]
+        return order
+
 
     def add_book_to_order(self, book: Book) -> None:
         if not isinstance(book, Book):
