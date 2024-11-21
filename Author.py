@@ -1,4 +1,4 @@
-import json
+
 class Author:
     def __init__(self, name: str, lastname: str):
         self.name: str = name

@@ -1,7 +1,7 @@
 from Users import User
 from Books import Book
 from typing import List
-import json
+
 
 class Cart:
     def __init__(self, user: User):

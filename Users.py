@@ -1,6 +1,6 @@
 from Books import Book
 from typing import List
-import json
+
 
 class User:
     def __init__(self, username: str, email: str):
