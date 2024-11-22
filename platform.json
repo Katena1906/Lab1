@@ -18,16 +18,14 @@
             }
         }
     ],
-    "orders": [
+    "carts": [
         {
-            "order_id": "order123",
             "user": {
                 "username": "Vovchik",
                 "email": "VovchikPomidorchik@mail.com",
                 "purchased": []
             },
-            "status": "processing",
-            "in_order": [
+            "items": [
                 {
                     "title": "Tokyo Ghoul",
                     "isbn": 123456,
@@ -41,14 +39,16 @@
             ]
         }
     ],
-    "carts": [
+    "orders": [
         {
+            "order_id": "order123",
             "user": {
                 "username": "Vovchik",
                 "email": "VovchikPomidorchik@mail.com",
                 "purchased": []
             },
-            "items": [
+            "status": "processing",
+            "in_order": [
                 {
                     "title": "Tokyo Ghoul",
                     "isbn": 123456,

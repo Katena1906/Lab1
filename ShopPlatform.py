@@ -97,8 +97,10 @@ class ShopPlatform:
         print(f"Review by {review.user.username} for book '{review.book.title}' added")
 
     def to_json(self) -> dict:
-        return {"users": [user.to_json() for user in self.users], "books": [book.to_json() for book in self.books],
-                "orders": [order.to_json() for order in self.orders], "carts": [cart.to_json() for cart in self.carts],
+        return {"users": [user.to_json() for user in self.users],
+                "books": [book.to_json() for book in self.books],
+                "carts": [cart.to_json() for cart in self.carts],
+                "orders": [order.to_json() for order in self.orders],
                 "reviews": [review.to_json() for review in self.reviews],
                 "coupons": [coupon.to_json() for coupon in self.coupons],
                 "payments": [payment.to_json() for payment in self.payments],
