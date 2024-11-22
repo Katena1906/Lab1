@@ -4,43 +4,51 @@ from Author import Author
 from Review import Review
 from typing import List
 from Cart import Cart, Order
+from Coupon import Coupon
 
 class ShopPlatform:
     def __init__(self):
         self.users: List[User] = []
-        self.authors: List[Author] = []
         self.books: List[Book] = []
         self.orders: List[Order] = []
         self.carts: List[Cart] = []
         self.reviews: List[Review] = []
+        self.coupons: List[Coupon] = []
+
+    def add_coupon(self, coupon: Coupon):
+        if any(existing_coupon.code == coupon.code for existing_coupon in self.coupons):
+            print(f"User with email {coupon.code} already exists")
+            return
+        self.coupons.append(coupon)
+        print(f"Coupon {coupon.code} added")
 
     def add_user(self, user: User):
         if any(existing_user.email == user.email for existing_user in self.users):
-            print(f"User with email {user.email} already exists.")
+            print(f"User with email {user.email} already exists")
             return
         self.users.append(user)
-        print(f"User {user.username} added.")
+        print(f"User {user.username} added")
 
     def add_book(self, book: Book):
         if any(existing_book.isbn == book.isbn for existing_book in self.books):
-            print(f"Book with ISBN {book.isbn} already exists.")
+            print(f"Book with ISBN {book.isbn} already exists")
             return
         self.books.append(book)
-        print(f"Book '{book.title}' added.")
+        print(f"Book '{book.title}' added")
 
     def add_order(self, order: Order):
         if any(existing_order.order_id == order.order_id for existing_order in self.orders):
-            print(f"Order with ID {order.order_id} already exists.")
+            print(f"Order with ID {order.order_id} already exists")
             return
         self.orders.append(order)
-        print(f"Order {order.order_id} added.")
+        print(f"Order {order.order_id} added")
 
     def add_cart(self, cart: Cart):
         if any(existing_cart.user.email == cart.user.email for existing_cart in self.carts):
-            print(f"Cart for user {cart.user.username} already exists.")
+            print(f"Cart for user {cart.user.username} already exists")
             return
         self.carts.append(cart)
-        print(f"Cart for user {cart.user.username} added.")
+        print(f"Cart for user {cart.user.username} added")
 
     def add_review(self, review: Review):
         if any(
@@ -48,10 +56,10 @@ class ShopPlatform:
             existing_review.book.isbn == review.book.isbn
             for existing_review in self.reviews
         ):
-            print(f"Review for book '{review.book.title}' by user {review.user.username} already exists.")
+            print(f"Review for book '{review.book.title}' by user {review.user.username} already exists")
             return
         self.reviews.append(review)
-        print(f"Review by {review.user.username} for book '{review.book.title}' added.")
+        print(f"Review by {review.user.username} for book '{review.book.title}' added")
 
     def to_json(self) -> dict:
         return {
@@ -60,6 +68,7 @@ class ShopPlatform:
             "orders": [order.to_json() for order in self.orders],
             "carts": [cart.to_json() for cart in self.carts],
             "reviews": [review.to_json() for review in self.reviews],
+            "coupons": [coupon.to_json() for coupon in self.coupons]
         }
 
     @classmethod
@@ -70,6 +79,7 @@ class ShopPlatform:
         platform.orders = [Order.from_json(order) for order in data["orders"]]
         platform.carts = [Cart.from_json(cart) for cart in data["carts"]]
         platform.reviews = [Review.from_json(review) for review in data["reviews"]]
+        platform.coupons = [Coupon.from_json(coupon) for coupon in data["coupons"]]
         return platform
 
 

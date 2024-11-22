@@ -7,6 +7,7 @@ from Books import Book
 from Users import User
 from Cart import Cart, Order
 from Review import Review
+from Coupon import Coupon
 from ShopPlatform import ShopPlatform
 import json
 
@@ -22,6 +23,7 @@ if __name__ == '__main__':
     book = Book("Tokyo Ghoul", 123456, 12.99, "Psyhology drama", author)
     user = User("Vovchik", "VovchikPomidorchik@mail.com")
     review = Review(user, book, "Great book!", 5)
+    coupon = Coupon("ee3he38",20.99)
     cart = Cart(user)
     cart.add_book(book)
     order = Order("order123", user)
@@ -33,7 +35,8 @@ if __name__ == '__main__':
     platform.add_book(book)
     platform.add_order(order)
     platform.add_cart(cart)
-    platform.reviews.append(review)
+    platform.add_review(review)
+    platform.add_coupon(coupon)
 
     with open("platform.json", "w", encoding="utf-8") as out_file:
         json.dump(platform.to_json(), out_file, ensure_ascii=False, indent=4)
