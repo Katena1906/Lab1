@@ -3,12 +3,19 @@ from Books import Book
 
 class Review:
     def __init__(self, user: User, book: Book, comment: str, rating: int):
+        if not isinstance(user, User):
+            raise TypeError("user must be instance of User class")
+        if not isinstance(book, Book):
+            raise TypeError("book must be instance of Book class")
+        if not isinstance(comment, str):
+            raise TypeError("comment must be a string")
+        if not isinstance(rating, int) or not (1 <= rating <= 5):
+            raise ValueError(
+            "rating must be an integer between 1 and 5")
         self.user: User = user
         self.book: Book = book
         self.comment: str = comment
         self.rating: int = rating
-        if rating < 1 or rating > 5:
-            raise ValueError("Rating must be between 1 and 5.")
 
     def read_review(self) -> None:
         print(f"User:{self.user} wrote {self.comment} and gave rating {self.rating} for the book '{self.book.title}'")
