@@ -3,7 +3,7 @@ class Coupon:
         if not isinstance(code, str):
             raise TypeError("Coupon code must be a string.")
         if not isinstance(discount, (float, int)) or not (0 < discount <= 100):
-            raise ValueError("Discount must be a number between 0 and 100.")
+            raise ValueError("Discount must be a number between 0 and 100")
         self.code = code
         self.discount = discount
         self.is_active = True
@@ -23,9 +23,9 @@ class Coupon:
 
     def apply_discount(self, total: float):
         if not isinstance(total, (float, int)) or total < 0:
-            raise ValueError("Total must be a positive number.")
+            raise ValueError("Total must be a positive number")
         if not self.is_active:
-            raise ValueError("Coupon is not active.")
+            raise ValueError("Coupon is not active")
         return total * (1 - self.discount / 100)
 
     def deactivate(self):

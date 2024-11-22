@@ -8,6 +8,7 @@ from Users import User
 from Cart import Cart, Order
 from Review import Review
 from Coupon import Coupon
+from Payment import Payment
 from ShopPlatform import ShopPlatform
 import json
 
@@ -28,6 +29,7 @@ if __name__ == '__main__':
     cart.add_book(book)
     order = Order("order123", user)
     order.add_book_to_order(book)
+    payment = Payment(order,"spb")
 
     # Создание платформы
     platform = ShopPlatform()
@@ -37,6 +39,7 @@ if __name__ == '__main__':
     platform.add_cart(cart)
     platform.add_review(review)
     platform.add_coupon(coupon)
+    platform.add_payment(payment)
 
     with open("platform.json", "w", encoding="utf-8") as out_file:
         json.dump(platform.to_json(), out_file, ensure_ascii=False, indent=4)

@@ -1,10 +1,10 @@
 from Books import Book
 from Users import User
-from Author import Author
 from Review import Review
 from typing import List
 from Cart import Cart, Order
 from Coupon import Coupon
+from Payment import Payment
 
 class ShopPlatform:
     def __init__(self):
@@ -14,8 +14,17 @@ class ShopPlatform:
         self.carts: List[Cart] = []
         self.reviews: List[Review] = []
         self.coupons: List[Coupon] = []
+        self.payments: List[Payment] = []
+
+    def add_payment(self, payment: Payment):
+        if not isinstance(payment, Payment):
+            raise TypeError("Argument must be an instance of the Payment class")
+        self.payments.append(payment)
+        print(f"Payment for Order {payment.order.order_id} added successfully")
 
     def add_coupon(self, coupon: Coupon):
+        if not isinstance(coupon, Coupon):
+            raise TypeError("Argument must be an instance of the Coupon class")
         if any(existing_coupon.code == coupon.code for existing_coupon in self.coupons):
             print(f"User with email {coupon.code} already exists")
             return
@@ -23,6 +32,8 @@ class ShopPlatform:
         print(f"Coupon {coupon.code} added")
 
     def add_user(self, user: User):
+        if not isinstance(user, User):
+            raise TypeError("Argument must be an instance of the User class.")
         if any(existing_user.email == user.email for existing_user in self.users):
             print(f"User with email {user.email} already exists")
             return
@@ -30,6 +41,8 @@ class ShopPlatform:
         print(f"User {user.username} added")
 
     def add_book(self, book: Book):
+        if not isinstance(book, Book):
+            raise TypeError("Argument must be an instance of the Book class.")
         if any(existing_book.isbn == book.isbn for existing_book in self.books):
             print(f"Book with ISBN {book.isbn} already exists")
             return
@@ -37,6 +50,8 @@ class ShopPlatform:
         print(f"Book '{book.title}' added")
 
     def add_order(self, order: Order):
+        if not isinstance(order, Order):
+            raise TypeError("Argument must be an instance of the Order class.")
         if any(existing_order.order_id == order.order_id for existing_order in self.orders):
             print(f"Order with ID {order.order_id} already exists")
             return
@@ -44,6 +59,8 @@ class ShopPlatform:
         print(f"Order {order.order_id} added")
 
     def add_cart(self, cart: Cart):
+        if not isinstance(cart, Cart):
+            raise TypeError("Argument must be an instance of the Cart class.")
         if any(existing_cart.user.email == cart.user.email for existing_cart in self.carts):
             print(f"Cart for user {cart.user.username} already exists")
             return
@@ -51,6 +68,8 @@ class ShopPlatform:
         print(f"Cart for user {cart.user.username} added")
 
     def add_review(self, review: Review):
+        if not isinstance(review, Review):
+            raise TypeError("Argument must be an instance of the Review class.")
         if any(
             existing_review.user.email == review.user.email and
             existing_review.book.isbn == review.book.isbn
@@ -68,7 +87,8 @@ class ShopPlatform:
             "orders": [order.to_json() for order in self.orders],
             "carts": [cart.to_json() for cart in self.carts],
             "reviews": [review.to_json() for review in self.reviews],
-            "coupons": [coupon.to_json() for coupon in self.coupons]
+            "coupons": [coupon.to_json() for coupon in self.coupons],
+            "payments": [payment.to_json() for payment in self.payments]
         }
 
     @classmethod
@@ -80,6 +100,7 @@ class ShopPlatform:
         platform.carts = [Cart.from_json(cart) for cart in data["carts"]]
         platform.reviews = [Review.from_json(review) for review in data["reviews"]]
         platform.coupons = [Coupon.from_json(coupon) for coupon in data["coupons"]]
+        platform.payments = [Payment.from_json(payment) for payment in data["payments"]]
         return platform
 
 
