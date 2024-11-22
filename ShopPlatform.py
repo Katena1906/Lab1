@@ -20,7 +20,7 @@ class ShopPlatform:
         self.publishers: List[Publisher] = []
         self.subscriptions: List[Subscription] = []
 
-    def add_subscription(self,subscription: Subscription):
+    def add_subscription(self, subscription: Subscription):
         if not isinstance(subscription, Subscription):
             raise TypeError("Argument must be an instance of the Subscription class")
         self.subscriptions.append(subscription)
@@ -97,17 +97,13 @@ class ShopPlatform:
         print(f"Review by {review.user.username} for book '{review.book.title}' added")
 
     def to_json(self) -> dict:
-        return {
-            "users": [user.to_json() for user in self.users],
-            "books": [book.to_json() for book in self.books],
-            "orders": [order.to_json() for order in self.orders],
-            "carts": [cart.to_json() for cart in self.carts],
-            "reviews": [review.to_json() for review in self.reviews],
-            "coupons": [coupon.to_json() for coupon in self.coupons],
-            "payments": [payment.to_json() for payment in self.payments],
-            "publishers": [publisher.to_json() for publisher in self.publishers],
-            "subscriptions": [subscription.to_json() for subscription in self.subscriptions]
-        }
+        return {"users": [user.to_json() for user in self.users], "books": [book.to_json() for book in self.books],
+                "orders": [order.to_json() for order in self.orders], "carts": [cart.to_json() for cart in self.carts],
+                "reviews": [review.to_json() for review in self.reviews],
+                "coupons": [coupon.to_json() for coupon in self.coupons],
+                "payments": [payment.to_json() for payment in self.payments],
+                "publishers": [publisher.to_json() for publisher in self.publishers],
+                "subscriptions": [subscription.to_json() for subscription in self.subscriptions]}
 
     @classmethod
     def from_json(cls, data: dict):

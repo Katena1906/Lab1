@@ -11,6 +11,7 @@ from Coupon import Coupon
 from Payment import Payment
 from Pyblisher import Publisher
 from ShopPlatform import ShopPlatform
+from Subscription import Subscription
 import json
 
 def print_hi(name):
@@ -20,7 +21,6 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # Создание данных
     try:
         author = Author("Sui", "Ishida")
     except (ValueError, TypeError) as e:
@@ -35,6 +35,11 @@ if __name__ == '__main__':
         user = User("Vovchik", "VovchikPomidorchik@mail.com")
     except (ValueError, TypeError) as e:
         print(f"Error while creating User: {e}")
+
+    try:
+        subscription = Subscription(user, "19.06.2024","23.07.2025")
+    except (ValueError, TypeError) as e:
+        print(f"Error while creating Subscription: {e}")
 
     try:
         review = Review(user, book, "Great book!", 5)
@@ -69,7 +74,6 @@ if __name__ == '__main__':
     except (ValueError, TypeError) as e:
         print(f"Error while creating Publisher or publishing book: {e}")
 
-    # Создание платформы
     try:
         platform = ShopPlatform()
         platform.add_user(user)
@@ -80,6 +84,7 @@ if __name__ == '__main__':
         platform.add_coupon(coupon)
         platform.add_payment(payment)
         platform.add_publisher(publisher)
+        platform.add_subscription(Subscription)
     except (ValueError, TypeError) as e:
         print(f"Error while adding items to ShopPlatform: {e}")
 
