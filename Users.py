@@ -3,6 +3,10 @@ from typing import List
 
 class User:
     def __init__(self, username: str, email: str):
+        if not isinstance(username, str) or not username.strip():
+            raise ValueError("Username must be a non-empty string.")
+        if not isinstance(email, str) or "@" not in email or "." not in email:
+            raise ValueError("Email must be a valid email address.")
         self.username: str = username
         self.email: str = email
         self.purchased: List[Book] = []
