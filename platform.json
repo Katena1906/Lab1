@@ -11,7 +11,7 @@
             "title": "Tokyo Ghoul",
             "isbn": 123456,
             "price": 12.99,
-            "genre": "Psyhology drama",
+            "genre": "Psychology drama",
             "author": {
                 "name": "Sui",
                 "lastname": "Ishida"
@@ -32,7 +32,7 @@
                     "title": "Tokyo Ghoul",
                     "isbn": 123456,
                     "price": 12.99,
-                    "genre": "Psyhology drama",
+                    "genre": "Psychology drama",
                     "author": {
                         "name": "Sui",
                         "lastname": "Ishida"
@@ -53,7 +53,7 @@
                     "title": "Tokyo Ghoul",
                     "isbn": 123456,
                     "price": 12.99,
-                    "genre": "Psyhology drama",
+                    "genre": "Psychology drama",
                     "author": {
                         "name": "Sui",
                         "lastname": "Ishida"
@@ -73,7 +73,7 @@
                 "title": "Tokyo Ghoul",
                 "isbn": 123456,
                 "price": 12.99,
-                "genre": "Psyhology drama",
+                "genre": "Psychology drama",
                 "author": {
                     "name": "Sui",
                     "lastname": "Ishida"
@@ -105,7 +105,7 @@
                         "title": "Tokyo Ghoul",
                         "isbn": 123456,
                         "price": 12.99,
-                        "genre": "Psyhology drama",
+                        "genre": "Psychology drama",
                         "author": {
                             "name": "Sui",
                             "lastname": "Ishida"
@@ -125,7 +125,7 @@
                     "title": "Tokyo Ghoul",
                     "isbn": 123456,
                     "price": 12.99,
-                    "genre": "Psyhology drama",
+                    "genre": "Psychology drama",
                     "author": {
                         "name": "Sui",
                         "lastname": "Ishida"

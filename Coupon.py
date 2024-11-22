@@ -21,7 +21,7 @@ class Coupon:
         coupon.is_active = data["is_active"]
         return coupon
 
-    def apply_discount(self, total: float):
+    def apply(self, total: float):
         if not isinstance(total, (float, int)) or total < 0:
             raise ValueError("Total must be a positive number")
         if not self.is_active:
