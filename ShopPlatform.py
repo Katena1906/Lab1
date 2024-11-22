@@ -5,6 +5,7 @@ from typing import List
 from Cart import Cart, Order
 from Coupon import Coupon
 from Payment import Payment
+from Pyblisher import Publisher
 
 class ShopPlatform:
     def __init__(self):
@@ -15,6 +16,13 @@ class ShopPlatform:
         self.reviews: List[Review] = []
         self.coupons: List[Coupon] = []
         self.payments: List[Payment] = []
+        self.publishers: List[Publisher] = []
+
+    def add_publisher(self,publisher: Publisher):
+        if not isinstance(publisher, Publisher):
+            raise TypeError("Argument must be an instance of the Payment class")
+        self.publishers.append(publisher)
+        print(f"Publisher {publisher.name} added successfully")
 
     def add_payment(self, payment: Payment):
         if not isinstance(payment, Payment):
@@ -88,7 +96,8 @@ class ShopPlatform:
             "carts": [cart.to_json() for cart in self.carts],
             "reviews": [review.to_json() for review in self.reviews],
             "coupons": [coupon.to_json() for coupon in self.coupons],
-            "payments": [payment.to_json() for payment in self.payments]
+            "payments": [payment.to_json() for payment in self.payments],
+            "publishers": [publisher.to_json() for publisher in self.publishers]
         }
 
     @classmethod
@@ -101,6 +110,7 @@ class ShopPlatform:
         platform.reviews = [Review.from_json(review) for review in data["reviews"]]
         platform.coupons = [Coupon.from_json(coupon) for coupon in data["coupons"]]
         platform.payments = [Payment.from_json(payment) for payment in data["payments"]]
+        platform.publishers = [Publisher.from_json(publisher) for publisher in data["publishers"]]
         return platform
 
 

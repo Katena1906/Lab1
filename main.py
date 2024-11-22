@@ -2,13 +2,14 @@
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-from Author import Author
 from Books import Book
 from Users import User
-from Cart import Cart, Order
 from Review import Review
+from Author import Author
+from Cart import Cart, Order
 from Coupon import Coupon
 from Payment import Payment
+from Pyblisher import Publisher
 from ShopPlatform import ShopPlatform
 import json
 
@@ -30,6 +31,8 @@ if __name__ == '__main__':
     order = Order("order123", user)
     order.add_book_to_order(book)
     payment = Payment(order,"spb")
+    publisher = Publisher("Weekly Shonen Jump")
+    publisher.publish_book(book)
 
     # Создание платформы
     platform = ShopPlatform()
@@ -40,6 +43,7 @@ if __name__ == '__main__':
     platform.add_review(review)
     platform.add_coupon(coupon)
     platform.add_payment(payment)
+    platform.add_publisher(publisher)
 
     with open("platform.json", "w", encoding="utf-8") as out_file:
         json.dump(platform.to_json(), out_file, ensure_ascii=False, indent=4)

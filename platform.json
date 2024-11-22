@@ -116,5 +116,22 @@
             "payment_method": "spb",
             "payment_status": "pending"
         }
+    ],
+    "publishers": [
+        {
+            "name": "Weekly Shonen Jump",
+            "books": [
+                {
+                    "title": "Tokyo Ghoul",
+                    "isbn": 123456,
+                    "price": 12.99,
+                    "genre": "Psyhology drama",
+                    "author": {
+                        "name": "Sui",
+                        "lastname": "Ishida"
+                    }
+                }
+            ]
+        }
     ]
 }
