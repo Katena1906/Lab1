@@ -2,9 +2,9 @@ from Author import Author
 class Book:
     def __init__(self, title: str,isbn: int, price: float, genre: str, author: Author)-> None:
         if not isinstance(title, str):
-            raise TypeError("Title must be a string.")
+            raise TypeError("Title must be string")
         if not isinstance(isbn, int):
-            raise TypeError("ISBN must be an integer.")
+            raise TypeError("ISBN must be integer")
         if not isinstance(price, (float, int)) or price < 0:
             raise ValueError("Price must be positive number")
         if not isinstance(genre, str):

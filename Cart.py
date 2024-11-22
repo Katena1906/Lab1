@@ -5,6 +5,8 @@ from typing import List
 
 class Cart:
     def __init__(self, user: User):
+        if not isinstance(user, User):
+            raise TypeError("user must be instance of User class")
         self.user: User = user
         self.items: List[Book] = []
 
@@ -51,6 +53,10 @@ class Cart:
 
 class Order:
     def __init__(self, order_id: str,user: User):
+        if not isinstance(order_id, str) or not order_id.strip():
+            raise ValueError("order_id must be a non-empty string")
+        if not isinstance(user, User):
+            raise TypeError("user must be an instance of User class")
         self.order_id: str = order_id
         self.user: User = user
         self.status: str = "processing"
