@@ -10,19 +10,6 @@ class Cart:
         self.user: User = user
         self.items: List[Book] = []
 
-    def to_json(self) -> dict:
-        return {
-            "user": self.user.to_json(),
-            "items": [book.to_json() for book in self.items],
-        }
-
-    @classmethod
-    def from_json(cls, data: dict):
-        user = User.from_json(data["user"])
-        cart = cls(user=user)
-        cart.items = [Book.from_json(book) for book in data["items"]]
-        return cart
-
     def add_book(self, book: Book) -> None:
         if not isinstance(book, Book):
             raise TypeError("Expected Book instance")
@@ -49,6 +36,19 @@ class Cart:
     def total_price(self) -> float:
         total = sum(book.price for book in self.items)
         return total
+
+    def to_json(self) -> dict:
+        return {
+            "user": self.user.to_json(),
+            "items": [book.to_json() for book in self.items],
+        }
+
+    @classmethod
+    def from_json(cls, data: dict):
+        user = User.from_json(data["user"])
+        cart = cls(user=user)
+        cart.items = [Book.from_json(book) for book in data["items"]]
+        return cart
 
 
 class Order:

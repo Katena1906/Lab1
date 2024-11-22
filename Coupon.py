@@ -31,7 +31,4 @@ class Coupon:
     def deactivate(self):
         self.is_active = False
 
-    def __str__(self):
-        status = "active" if self.is_active else "inactive"
-        return f"Coupon {self.code}: {self.discount}% off, Status: {status}"
 
