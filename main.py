@@ -5,8 +5,10 @@
 from Author import Author
 from Books import Book
 from Users import User
-from Cart import Cart
+from Cart import Cart, Order
 from Review import Review
+from ShopPlatform import ShopPlatform
+import json
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -15,28 +17,30 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-
-
-    author = Author(name="George", lastname="Orwell")
-
-
-    book1 = Book(title="1984", isbn=1234567890, price=9.99, genre="Dystopian", author=author)
-    book2 = Book(title="Animal Farm", isbn=1234567891, price=7.99, genre="Political Satire", author=author)
-
-    user = User("john_doe", "john@example.com")
-
+    # Создание данных
+    author = Author("Sui", "Ishida")
+    book = Book("Tokyo Ghoul", 123456, 12.99, "Psyhology drama", author)
+    user = User("Vovchik", "VovchikPomidorchik@mail.com")
+    review = Review(user, book, "Great book!", 5)
     cart = Cart(user)
-    cart.add_book(book1)
-    cart.add_book(book2)
+    cart.add_book(book)
+    order = Order("order123", user)
+    order.add_book_to_order(book)
+
+    # Создание платформы
+    platform = ShopPlatform()
+    platform.add_user(user)
+    platform.add_book(book)
+    platform.add_order(order)
+    platform.add_cart(cart)
+    platform.reviews.append(review)
+
+    with open("platform.json", "w", encoding="utf-8") as out_file:
+        json.dump(platform.to_json(), out_file, ensure_ascii=False, indent=4)
 
 
-    available_books = [book1, book2]
-
-
-    author = Author("John", "Doe")
-    book = Book("Example Book", 2236667890, 29.99, "Fiction", author)
-    user = User("johndoe", "johndoe@example.com")
-    review = Review(user, book, "Great read!", 5)
-    review.read_review()
+    with open("platform.json", "r", encoding="utf-8") as inp_file:
+        data = json.load(inp_file)
+        loaded_platform = ShopPlatform.from_json(data)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

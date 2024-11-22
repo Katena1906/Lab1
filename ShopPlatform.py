@@ -57,7 +57,6 @@ class ShopPlatform:
         return {
             "users": [user.to_json() for user in self.users],
             "books": [book.to_json() for book in self.books],
-            "authors": [author.to_json() for author in self.authors],
             "orders": [order.to_json() for order in self.orders],
             "carts": [cart.to_json() for cart in self.carts],
             "reviews": [review.to_json() for review in self.reviews],
@@ -68,7 +67,6 @@ class ShopPlatform:
         platform = cls()
         platform.users = [User.from_json(user) for user in data["users"]]
         platform.books = [Book.from_json(book) for book in data["books"]]
-        platform.authors = [Author.from_json(author) for author in data["authors"]]
         platform.orders = [Order.from_json(order) for order in data["orders"]]
         platform.carts = [Cart.from_json(cart) for cart in data["carts"]]
         platform.reviews = [Review.from_json(review) for review in data["reviews"]]
