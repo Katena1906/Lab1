@@ -6,6 +6,7 @@ from Cart import Cart, Order
 from Coupon import Coupon
 from Payment import Payment
 from Pyblisher import Publisher
+from Subscription import Subscription
 
 class ShopPlatform:
     def __init__(self):
@@ -17,10 +18,17 @@ class ShopPlatform:
         self.coupons: List[Coupon] = []
         self.payments: List[Payment] = []
         self.publishers: List[Publisher] = []
+        self.subscriptions: List[Subscription] = []
+
+    def add_subscription(self,subscription: Subscription):
+        if not isinstance(subscription, Subscription):
+            raise TypeError("Argument must be an instance of the Subscription class")
+        self.subscriptions.append(subscription)
+        print(f"Subscription added successfully")
 
     def add_publisher(self,publisher: Publisher):
         if not isinstance(publisher, Publisher):
-            raise TypeError("Argument must be an instance of the Payment class")
+            raise TypeError("Argument must be an instance of the Publisher class")
         self.publishers.append(publisher)
         print(f"Publisher {publisher.name} added successfully")
 
@@ -97,7 +105,8 @@ class ShopPlatform:
             "reviews": [review.to_json() for review in self.reviews],
             "coupons": [coupon.to_json() for coupon in self.coupons],
             "payments": [payment.to_json() for payment in self.payments],
-            "publishers": [publisher.to_json() for publisher in self.publishers]
+            "publishers": [publisher.to_json() for publisher in self.publishers],
+            "subscriptions": [subscription.to_json() for subscription in self.subscriptions]
         }
 
     @classmethod
@@ -111,6 +120,7 @@ class ShopPlatform:
         platform.coupons = [Coupon.from_json(coupon) for coupon in data["coupons"]]
         platform.payments = [Payment.from_json(payment) for payment in data["payments"]]
         platform.publishers = [Publisher.from_json(publisher) for publisher in data["publishers"]]
+        platform.subscriptions = [Subscription.to_json(subscription) for subscription in data["subscriptions"]]
         return platform
 
 
