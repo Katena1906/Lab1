@@ -11,7 +11,6 @@ from Coupon import Coupon
 from Payment import Payment
 from Pyblisher import Publisher
 from ShopPlatform import ShopPlatform
-from Subscription import Subscription
 from CRUD import CRUD
 import json
 import xml.etree.ElementTree as ET
@@ -36,12 +35,6 @@ if __name__ == '__main__':
         user = User("Vovchik", "VovchikPomidorchik@mail.com")
     except (ValueError, TypeError) as e:
         print(f"Error while creating User: {e}")
-
-    subscription=None
-    try:
-        subscription = Subscription(user, "19.06.2024","23.07.2025")
-    except (ValueError, TypeError) as e:
-        print(f"Error while creating Subscription: {e}")
 
     review=None
     try:
@@ -81,7 +74,6 @@ if __name__ == '__main__':
         publisher.publish_book(book)
     except (ValueError, TypeError) as e:
         print(f"Error while creating Publisher or publishing book: {e}")
-
 
     platform=None
     try:
