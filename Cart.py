@@ -8,39 +8,40 @@ class Cart:
         if not isinstance(user, User):
             raise TypeError("user must be instance of User class")
         self.user: User = user
-        self.items: List[Book] = []
+        self.__items: List[Book] = []
 
     def add_book(self, book: Book) -> None:
         if not isinstance(book, Book):
             raise TypeError("Expected Book instance")
-        self.items.append(book)
-        print(f"'{book.title}' added to {self.user.username} cart")
+        self.__items.append(book)
+        print("book added to  cart")
 
     def remove_book(self, book: Book) -> None:
         if not isinstance(book, Book):
             raise TypeError("Expected Book instance")
         try:
-            self.items.remove(book)
-            print(f"'{book.title}' removed from {self.user.username} cart")
+            self.__items.remove(book)
+            print("book removed from cart")
         except ValueError:
-            print(f"'{book.title}' is not in {self.user.username} cart")
+            print("book is not in cart")
 
     def list_items(self) -> None:
-        if not self.items:
-            print(f"{self.user.username} cart is empty")
+        if not self.__items:
+            print("cart is empty")
             return
         print(f"Books in {self.user.username} cart:")
-        for book in self.items:
-            print(f"- {book.title} by {book.author.name} {book.author.lastname}")
+        for book in self.__items:
+            print(f"{book.title}")
 
     def total_price(self) -> float:
-        total = sum(book.price for book in self.items)
+        total = sum(book.price for book in self.__items)
         return total
+
 
     def to_json(self) -> dict:
         return {
             "user": self.user.to_json(),
-            "items": [book.to_json() for book in self.items],
+            "items": [book.to_json() for book in self.__items],
         }
 
     @classmethod
@@ -59,15 +60,15 @@ class Order:
             raise TypeError("user must be an instance of User class")
         self.order_id: str = order_id
         self.user: User = user
-        self.status: str = "processing"
-        self.in_order: List[Book] = []
+        self.__status: str = "processing"
+        self.__in_order: List[Book] = []
 
     def to_json(self) -> dict:
         return {
             "order_id": self.order_id,
             "user": self.user.to_json(),
-            "status": self.status,
-            "in_order": [book.to_json() for book in self.in_order],
+            "status": self.__status,
+            "in_order": [book.to_json() for book in self.__in_order],
         }
 
     @classmethod
@@ -82,33 +83,33 @@ class Order:
     def add_book_to_order(self, book: Book) -> None:
         if not isinstance(book, Book):
             raise TypeError("Expected Book instance")
-        self.in_order.append(book)
-        print(f"'{book.title}' added to {self.user.username} order")
+        self.__in_order.append(book)
+        print(f"book added to {self.user.username} order")
 
     def remove_book_in_order(self, book: Book) -> None:
         if not isinstance(book, Book):
             raise TypeError("Expected Book instance")
         try:
-            self.in_order.remove(book)
-            print(f"'{book.title}' removed from {self.user.username} order")
+            self.__in_order.remove(book)
+            print(f"'book removed from {self.user.username} order")
         except ValueError:
-            print(f"'{book.title}' is not in {self.user.username} order")
+            print(f"book is not in {self.user.username} order")
 
     def list_items(self) -> None:
-        if not self.in_order:
+        if not self.__in_order:
             print(f"{self.user.username} order is empty")
             return
         print(f"Books in {self.user.username} cart:")
-        for book in self.in_order:
-            print(f"- {book.title} by {book.author.name} {book.author.lastname}")
+        for book in self.__in_order:
+            print(f"- {book.title}")
 
     def total_price(self) -> float:
-        total = sum(book.price for book in self.in_order)
+        total = sum(book.price for book in self.__in_order)
         return total
 
     def change_status(self, new_status: str) -> None:
         valid_statuses = ["processing", "shipped", "delivered", "canceled"]
         if new_status not in valid_statuses:
             raise ValueError(f"Invalid status: {new_status}. Valid statuses are: {', '.join(valid_statuses)}.")
-        self.status = new_status
-        print(f"Order status changed to '{self.status}'")
+        self.__status = new_status
+        print(f"Order status changed to '{self.__status}'")

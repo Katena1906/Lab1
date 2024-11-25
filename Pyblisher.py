@@ -6,21 +6,21 @@ class Publisher:
     def __init__(self, name: str):
         if not isinstance(name, str) or not name.strip():
             raise ValueError("Publisher name must be a non-empty string.")
-        self.name = name
-        self.books: List[Book] = []
+        self.__name = name
+        self.__books: List[Book] = []
 
     def publish_book(self, book: Book):
         if not isinstance(book, Book):
             raise ValueError("Must be class Book")
-        if book in self.books:
+        if book in self.__books:
             raise ValueError(f"The book '{book.title}' is already published.")
-        self.books.append(book)
-        print(f"Book '{book}' has been published by {self.name}.")
+        self.__books.append(book)
+        print(f"Book '{book.title}' has been published by {self.__name}.")
 
 
     def to_json(self) -> dict:
-        return {"name": self.name,
-                "books": [book.to_json() for book in self.books]}
+        return {"name": self.__name,
+                "books": [book.to_json() for book in self.__books]}
 
     @classmethod
     def from_json(cls, data: dict):

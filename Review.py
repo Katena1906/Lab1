@@ -14,18 +14,18 @@ class Review:
             "rating must be an integer between 1 and 5")
         self.user: User = user
         self.book: Book = book
-        self.comment: str = comment
-        self.rating: int = rating
+        self.__comment: str = comment
+        self.__rating: int = rating
 
     def read_review(self) -> None:
-        print(f"User:{self.user} wrote {self.comment} and gave rating {self.rating} for the book '{self.book.title}'")
+        print(f"User:{self.user} wrote {self.__comment} and gave rating {self.__rating} for the book '{self.book.title}'")
 
     def to_json(self) -> dict:
         return {
             'user': self.user.to_json(),
             'book': self.book.to_json(),
-            'comment': self.comment,
-            'rating': self.rating
+            'comment': self.__comment,
+            'rating': self.__rating
         }
 
     @classmethod

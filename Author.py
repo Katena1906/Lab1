@@ -5,11 +5,11 @@ class Author:
             raise TypeError("Name must be string")
         if not isinstance(lastname, str):
             raise TypeError("Lastname must be string")
-        self.name: str = name
-        self.lastname: str = lastname
+        self.__name: str = name
+        self.__lastname: str = lastname
 
     def to_json(self) -> dict:
-        return {"name": self.name, "lastname": self.lastname}
+        return {"name": self.__name, "lastname": self.__lastname}
 
     @classmethod
     def from_json(cls, data: dict):

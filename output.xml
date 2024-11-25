@@ -6,8 +6,8 @@
     <price>15.99</price>
     <genre>science</genre>
     <Author>
-      <name>Alexandr</name>
-      <lastname>Elkin</lastname>
+      <_Author__name>Alexandr</_Author__name>
+      <_Author__lastname>Elkin</_Author__lastname>
     </Author>
   </Book>
   <Book>
@@ -16,8 +16,8 @@
     <price>20.99</price>
     <genre>science</genre>
     <Author>
-      <name>Alexandr</name>
-      <lastname>Elkin</lastname>
+      <_Author__name>Alexandr</_Author__name>
+      <_Author__lastname>Elkin</_Author__lastname>
     </Author>
   </Book>
   <Book>
@@ -26,8 +26,8 @@
     <price>15.99</price>
     <genre>science</genre>
     <Author>
-      <name>Alexandr</name>
-      <lastname>Elkin</lastname>
+      <_Author__name>Alexandr</_Author__name>
+      <_Author__lastname>Elkin</_Author__lastname>
     </Author>
   </Book>
   <Cart>
@@ -41,8 +41,8 @@
       <price>12.99</price>
       <genre>Psychology drama</genre>
       <Author>
-        <name>Sui</name>
-        <lastname>Ishida</lastname>
+        <_Author__name>Sui</_Author__name>
+        <_Author__lastname>Ishida</_Author__lastname>
       </Author>
     </Book>
   </Cart>

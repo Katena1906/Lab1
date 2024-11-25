@@ -21,7 +21,7 @@ class User:
             return
         print(f"{self.username} purchased books:")
         for book in self.purchased:
-            print(f"- {book.title} by {book.author.name} {book.author.lastname}")
+            print(f"- {book.title} ")
 
     def to_json(self) -> dict:
         return {

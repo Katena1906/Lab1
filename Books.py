@@ -17,7 +17,6 @@ class Book:
         self.genre: str = genre
         self.author: Author = author
 
-
     def info(self) -> None:
         print(f"Title: {self.title}\nISBN: {self.isbn}\nPrice: {self.price}\nGenre: {self.genre}\nAuthor: {self.author.name} {self.author.lastname}")
 

@@ -23,13 +23,13 @@ class ShopPlatform:
         if not isinstance(publisher, Publisher):
             raise TypeError("Argument must be an instance of the Publisher class")
         self.publishers.append(publisher)
-        print(f"Publisher {publisher.name} added successfully")
+        print(f"Publisher added successfully")
 
     def add_payment(self, payment: Payment):
         if not isinstance(payment, Payment):
             raise TypeError("Argument must be an instance of the Payment class")
         self.payments.append(payment)
-        print(f"Payment for Order {payment.order.order_id} added successfully")
+        print(f"Payment  added successfully")
 
     def add_coupon(self, coupon: Coupon):
         if not isinstance(coupon, Coupon):
