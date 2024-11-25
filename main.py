@@ -14,10 +14,7 @@ from ShopPlatform import ShopPlatform
 from Subscription import Subscription
 from CRUD import CRUD
 import json
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import xml.etree.ElementTree as ET
 
 
 # Press the green button in the gutter to run the script.
@@ -110,7 +107,7 @@ if __name__ == '__main__':
         loaded_platform = ShopPlatform.from_json(data)
 
 
-    author2 = Author("Аlexandr", "Elkin")
+    author2 = Author("Alexandr", "Elkin")
     book_crud = CRUD(Book)
     book1 = Book("MatAnalyse", 9780747532699, 20.99, "science", author2)
     book2 = Book("Diffurs", 9780451524935, 15.99, "science", author2)
@@ -139,3 +136,29 @@ if __name__ == '__main__':
     for coupon in coupon_crud.list():
         print(coupon.code)
 
+    def serialize_object(obj):
+        obj_elem = ET.Element(obj.__class__.__name__)
+        for attr, value in obj.__dict__.items():
+            if isinstance(value, list):
+                for item in value:
+                    obj_elem.append(serialize_object(item))
+            elif hasattr(value, '__dict__'):
+                obj_elem.append(serialize_object(value))
+            else:
+                child = ET.SubElement(obj_elem, attr)
+                child.text = str(value)
+        return obj_elem
+
+    def ser_to_xml(objects):
+        root = ET.Element("Objects")
+        for item in objects:
+            root.append(serialize_object(item))
+        return root
+
+    obj_list = [book, book1, book2, cart]
+    root_t = ser_to_xml(obj_list)
+    xml_str = ET.tostring(root_t, encoding='unicode')
+    from xml.dom import minidom
+    pretty_xml_str = minidom.parseString(xml_str).toprettyxml(indent="  ")
+    with open("output.xml", "w") as filename:
+        filename.write(pretty_xml_str)
