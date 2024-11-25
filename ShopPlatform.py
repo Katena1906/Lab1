@@ -42,7 +42,7 @@ class ShopPlatform:
         if not isinstance(coupon, Coupon):
             raise TypeError("Argument must be an instance of the Coupon class")
         if any(existing_coupon.code == coupon.code for existing_coupon in self.coupons):
-            print(f"User with email {coupon.code} already exists")
+            print(f"User with coupon code {coupon.code} already exists")
             return
         self.coupons.append(coupon)
         print(f"Coupon {coupon.code} added")

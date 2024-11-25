@@ -3,12 +3,15 @@ class CRUD:
         if not isinstance(allowed_class, type):
             raise TypeError(f"Not a class")
         self._storage = []
+        self.current_id = 0
         self._allowed_class = allowed_class
+
 
     def create(self, item):
         if not isinstance(item, self._allowed_class):
             raise TypeError(f"It not object of {self._allowed_class.__name__}.")
         self._storage.append(item)
+        self.current_id += 1
         return item
 
     def read(self, index):
