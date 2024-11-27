@@ -2,6 +2,8 @@
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import json
+import xml.etree.ElementTree as ET
 from Books import Book
 from Users import User
 from Review import Review
@@ -12,8 +14,7 @@ from Payment import Payment
 from Pyblisher import Publisher
 from ShopPlatform import ShopPlatform
 from CRUD import CRUD
-import json
-import xml.etree.ElementTree as ET
+
 
 
 def serialize_object(obj):
@@ -125,13 +126,8 @@ def main():
         book_crud.create(book2)
     except TypeError as e:
         print(e)
-
     print(book_crud.read(0).title)
-
-
-
     book_crud.delete(0)
-
     for book in book_crud.list():
         print(book.title)
 
