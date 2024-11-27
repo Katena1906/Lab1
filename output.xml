@@ -35,15 +35,5 @@
       <username>Vovchik</username>
       <email>VovchikPomidorchik@mail.com</email>
     </User>
-    <Book>
-      <title>Tokyo Ghoul</title>
-      <isbn>123456</isbn>
-      <price>12.99</price>
-      <genre>Psychology drama</genre>
-      <Author>
-        <_Author__name>Sui</_Author__name>
-        <_Author__lastname>Ishida</_Author__lastname>
-      </Author>
-    </Book>
   </Cart>
 </Objects>
