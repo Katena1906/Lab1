@@ -6,11 +6,132 @@
             "purchased": []
         }
     ],
-    "books": [],
-    "carts": [],
-    "orders": [],
-    "reviews": [],
-    "coupons": [],
-    "payments": [],
-    "publishers": []
+    "books": [
+        {
+            "title": "Tokyo Ghoul",
+            "isbn": 123456,
+            "price": 12.99,
+            "genre": "Psychology drama",
+            "author": {
+                "name": "Sui",
+                "lastname": "Ishida"
+            }
+        }
+    ],
+    "carts": [
+        {
+            "user": {
+                "username": "Vovchik",
+                "email": "VovchikPomidorchik@mail.com",
+                "purchased": []
+            },
+            "items": [
+                {
+                    "title": "Tokyo Ghoul",
+                    "isbn": 123456,
+                    "price": 12.99,
+                    "genre": "Psychology drama",
+                    "author": {
+                        "name": "Sui",
+                        "lastname": "Ishida"
+                    }
+                }
+            ]
+        }
+    ],
+    "orders": [
+        {
+            "order_id": "order123",
+            "user": {
+                "username": "Vovchik",
+                "email": "VovchikPomidorchik@mail.com",
+                "purchased": []
+            },
+            "status": "processing",
+            "in_order": [
+                {
+                    "title": "Tokyo Ghoul",
+                    "isbn": 123456,
+                    "price": 12.99,
+                    "genre": "Psychology drama",
+                    "author": {
+                        "name": "Sui",
+                        "lastname": "Ishida"
+                    }
+                }
+            ]
+        }
+    ],
+    "reviews": [
+        {
+            "user": {
+                "username": "Vovchik",
+                "email": "VovchikPomidorchik@mail.com",
+                "purchased": []
+            },
+            "book": {
+                "title": "Tokyo Ghoul",
+                "isbn": 123456,
+                "price": 12.99,
+                "genre": "Psychology drama",
+                "author": {
+                    "name": "Sui",
+                    "lastname": "Ishida"
+                }
+            },
+            "comment": "Great book!",
+            "rating": 5
+        }
+    ],
+    "coupons": [
+        {
+            "code": "ee3he38",
+            "discount": 20.99,
+            "is_active": true
+        }
+    ],
+    "payments": [
+        {
+            "order": {
+                "order_id": "order123",
+                "user": {
+                    "username": "Vovchik",
+                    "email": "VovchikPomidorchik@mail.com",
+                    "purchased": []
+                },
+                "status": "processing",
+                "in_order": [
+                    {
+                        "title": "Tokyo Ghoul",
+                        "isbn": 123456,
+                        "price": 12.99,
+                        "genre": "Psychology drama",
+                        "author": {
+                            "name": "Sui",
+                            "lastname": "Ishida"
+                        }
+                    }
+                ]
+            },
+            "payment_method": "spb",
+            "payment_status": "pending"
+        }
+    ],
+    "publishers": [
+        {
+            "name": "Weekly Shonen Jump",
+            "books": [
+                {
+                    "title": "Tokyo Ghoul",
+                    "isbn": 123456,
+                    "price": 12.99,
+                    "genre": "Psychology drama",
+                    "author": {
+                        "name": "Sui",
+                        "lastname": "Ishida"
+                    }
+                }
+            ]
+        }
+    ]
 }

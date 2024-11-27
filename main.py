@@ -120,9 +120,15 @@ def main():
     book_crud = CRUD(Book)
     book1 = Book("MatAnalyse", 9780747532699, 20.99, "science", author2)
     book2 = Book("Diffurs", 9780451524935, 15.99, "science", author2)
-    book_crud.create(book1)
-    book_crud.create(book2)
+    try:
+        book_crud.create(book1)
+        book_crud.create(book2)
+    except TypeError as e:
+        print(e)
+
     print(book_crud.read(0).title)
+
+
 
     book_crud.delete(0)
 
@@ -145,7 +151,7 @@ def main():
     for coupon in coupon_crud.list():
         print(coupon.code)
 
-    obj_list = [book, book1, book2, cart]
+    obj_list = [cart]
     root_t = ser_to_xml(obj_list)
     xml_str = ET.tostring(root_t, encoding='unicode')
     from xml.dom import minidom

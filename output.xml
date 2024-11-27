@@ -1,39 +1,19 @@
 <?xml version="1.0" ?>
 <Objects>
-  <Book>
-    <title>Diffurs</title>
-    <isbn>9780451524935</isbn>
-    <price>15.99</price>
-    <genre>science</genre>
-    <Author>
-      <_Author__name>Alexandr</_Author__name>
-      <_Author__lastname>Elkin</_Author__lastname>
-    </Author>
-  </Book>
-  <Book>
-    <title>MatAnalyse</title>
-    <isbn>9780747532699</isbn>
-    <price>20.99</price>
-    <genre>science</genre>
-    <Author>
-      <_Author__name>Alexandr</_Author__name>
-      <_Author__lastname>Elkin</_Author__lastname>
-    </Author>
-  </Book>
-  <Book>
-    <title>Diffurs</title>
-    <isbn>9780451524935</isbn>
-    <price>15.99</price>
-    <genre>science</genre>
-    <Author>
-      <_Author__name>Alexandr</_Author__name>
-      <_Author__lastname>Elkin</_Author__lastname>
-    </Author>
-  </Book>
   <Cart>
     <User>
       <username>Vovchik</username>
       <email>VovchikPomidorchik@mail.com</email>
     </User>
+    <Book>
+      <title>Tokyo Ghoul</title>
+      <isbn>123456</isbn>
+      <price>12.99</price>
+      <genre>Psychology drama</genre>
+      <Author>
+        <_Author__name>Sui</_Author__name>
+        <_Author__lastname>Ishida</_Author__lastname>
+      </Author>
+    </Book>
   </Cart>
 </Objects>

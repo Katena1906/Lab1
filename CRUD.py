@@ -35,3 +35,4 @@ class CRUD:
 
     def list(self):
         return self.__storage
+
