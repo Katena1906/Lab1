@@ -16,66 +16,85 @@ import json
 import xml.etree.ElementTree as ET
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    author=None
+def serialize_object(obj):
+    obj_elem = ET.Element(obj.__class__.__name__)
+    for attr, value in obj.__dict__.items():
+        if isinstance(value, list):
+            for item in value:
+                obj_elem.append(serialize_object(item))
+        elif hasattr(value, '__dict__'):
+            obj_elem.append(serialize_object(value))
+        else:
+            child = ET.SubElement(obj_elem, attr)
+            child.text = str(value)
+    return obj_elem
+
+
+def ser_to_xml(objects):
+    root = ET.Element("Objects")
+    for item in objects:
+        root.append(serialize_object(item))
+    return root
+
+def main():
+    author = None
     try:
         author = Author("Sui", "Ishida")
     except (ValueError, TypeError) as e:
         print(f"Error while creating Author: {e}")
 
-    book=None
+    book = None
     try:
         book = Book("Tokyo Ghoul", 123456, 12.99, "Psychology drama", author)
     except (TypeError, ValueError) as e:
         print(f"Error while creating Book: {e}")
 
-    user=None
+    user = None
     try:
         user = User("Vovchik", "VovchikPomidorchik@mail.com")
     except (ValueError, TypeError) as e:
         print(f"Error while creating User: {e}")
 
-    review=None
+    review = None
     try:
         review = Review(user, book, "Great book!", 5)
     except (ValueError, TypeError) as e:
         print(f"Error while creating Review: {e}")
 
-    coupon=None
+    coupon = None
     try:
         coupon = Coupon("ee3he38", 20.99)
     except (TypeError, ValueError) as e:
         print(f"Error while creating Coupon: {e}")
 
-    cart=None
+    cart = None
     try:
         cart = Cart(user)
         cart.add_book(book)
     except (TypeError, ValueError) as e:
         print(f"Error while creating Cart or adding book: {e}")
 
-    order=None
+    order = None
     try:
         order = Order("order123", user)
         order.add_book_to_order(book)
     except (TypeError, ValueError) as e:
         print(f"Error while creating Order or adding book to order: {e}")
 
-    payment=None
+    payment = None
     try:
         payment = Payment(order, "spb")
     except (TypeError, ValueError) as e:
         print(f"Error while creating Payment: {e}")
 
-    publisher=None
+    publisher = None
     try:
         publisher = Publisher("Weekly Shonen Jump")
         publisher.publish_book(book)
     except (ValueError, TypeError) as e:
         print(f"Error while creating Publisher or publishing book: {e}")
 
-    platform=None
+    platform = None
     try:
         platform = ShopPlatform()
         platform.add_user(user)
@@ -93,11 +112,9 @@ if __name__ == '__main__':
     with open("platform.json", "w", encoding="utf-8") as out_file:
         json.dump(platform.to_json(), out_file, ensure_ascii=False, indent=4)
 
-
     with open("platform.json", "r", encoding="utf-8") as inp_file:
         data = json.load(inp_file)
         loaded_platform = ShopPlatform.from_json(data)
-
 
     author2 = Author("Alexandr", "Elkin")
     book_crud = CRUD(Book)
@@ -128,25 +145,6 @@ if __name__ == '__main__':
     for coupon in coupon_crud.list():
         print(coupon.code)
 
-    def serialize_object(obj):
-        obj_elem = ET.Element(obj.__class__.__name__)
-        for attr, value in obj.__dict__.items():
-            if isinstance(value, list):
-                for item in value:
-                    obj_elem.append(serialize_object(item))
-            elif hasattr(value, '__dict__'):
-                obj_elem.append(serialize_object(value))
-            else:
-                child = ET.SubElement(obj_elem, attr)
-                child.text = str(value)
-        return obj_elem
-
-    def ser_to_xml(objects):
-        root = ET.Element("Objects")
-        for item in objects:
-            root.append(serialize_object(item))
-        return root
-
     obj_list = [book, book1, book2, cart]
     root_t = ser_to_xml(obj_list)
     xml_str = ET.tostring(root_t, encoding='unicode')
@@ -154,3 +152,9 @@ if __name__ == '__main__':
     pretty_xml_str = minidom.parseString(xml_str).toprettyxml(indent="  ")
     with open("output.xml", "w") as filename:
         filename.write(pretty_xml_str)
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+   main()
+
